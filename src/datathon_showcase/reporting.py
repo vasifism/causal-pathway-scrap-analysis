@@ -17,6 +17,13 @@ def top_line(df: pd.DataFrame, column: str) -> str:
     return str(df.iloc[0][column])
 
 
+def render_table(df: pd.DataFrame) -> str:
+    try:
+        return df.to_markdown(index=False)
+    except ImportError:
+        return df.to_string(index=False)
+
+
 def build_markdown_summary(
     source_df: pd.DataFrame,
     defect_burden: pd.DataFrame,
@@ -62,10 +69,7 @@ def build_markdown_summary(
     if defect_burden.empty:
         lines.append("Defect burden could not be computed from the available columns.")
     else:
-        try:
-            lines.append(defect_burden.to_markdown(index=False))
-        except ImportError:
-            lines.append(defect_burden.to_string(index=False))
+        lines.append(render_table(defect_burden))
         lines.append("")
         lines.append(
             f"Top defect by aggregate burden: **{top_line(defect_burden, defect_burden.columns[0])}**."
@@ -87,7 +91,7 @@ def build_markdown_summary(
             "effect_gap",
             "tradeoff_flag",
         ]
-        lines.append(top[display_cols].to_markdown(index=False))
+        lines.append(render_table(top[display_cols]))
     lines.append("")
 
     lines.append("## Interpretation")

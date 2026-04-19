@@ -58,7 +58,10 @@ def run(csv_path: Path, out_dir: Path) -> None:
 
 def main() -> None:
     args = parse_args()
-    run(Path(args.csv).expanduser().resolve(), Path(args.out).expanduser().resolve())
+    run(
+        csv_path=Path(args.csv).expanduser().resolve(),
+        out_dir=Path(args.out).expanduser().resolve(),
+    )
 
 
 if __name__ == "__main__":

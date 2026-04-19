@@ -1,4 +1,3 @@
-
 # Causal Pathway Analysis for Scrap Reduction
 
 A compact showcase project that demonstrates how to move from  **causal reasoning → intervention decisions → actionable process changes** .
@@ -158,7 +157,7 @@ pip install -r requirements.txt
 Run the showcase pipeline:
 
 ```bash
-python -m src.datathon_showcase.run_showcase --csv data/synthetic_injection_molding_demo.csv
+python main.py
 ```
 
 ---
